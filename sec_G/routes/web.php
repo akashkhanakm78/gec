@@ -47,6 +47,7 @@ Route::get('/json', function () {
 
 Route::post('/create-user',[UserController::class,'createUser']);
 
+
 Route::get('/csrf', function () {
     return csrf_token();
 });
