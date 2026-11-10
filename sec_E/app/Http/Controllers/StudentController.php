@@ -19,7 +19,7 @@ class StudentController extends Controller  implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            new Middleware('AgeCheck'),
+            new Middleware('AgeCheck', only:['']),
         ];
     }
     public function index()
@@ -49,7 +49,7 @@ class StudentController extends Controller  implements HasMiddleware
     public function store(Request $request)
     {
         //
-        Return "This is the store page of StudentController";
+        Return "This is the store page of StudentController Input:" . $request->input('username');
     }
 
     /**

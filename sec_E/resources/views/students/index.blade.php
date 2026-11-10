@@ -14,6 +14,8 @@
 
 <form action="{{ route('students.store') }}" method="post">
     @csrf
+    <input type="text" name="username">
+
     <button type="submit">Create Student</button>
 </form>
 

@@ -8,6 +8,7 @@
     @method('PUT')
     <button type="submit">Update Student</button>
 </form>
+
     <form action="{{ route('students.destroy', $student) }}" method="post">
     @csrf
     @method('DELETE')
