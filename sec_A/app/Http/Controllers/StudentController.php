@@ -2,10 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
-class StudentController extends Controller
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
+use Override;
+
+class StudentController extends Controller implements HasMiddleware
 {
+
+    #[Override]
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('check'),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
@@ -16,9 +28,13 @@ class StudentController extends Controller
         $students = [
             ['id' => 1, 'name' => 'John Doe', 'age' => 20],
             ['id' => 2, 'name' => 'Jane Smith', 'age' => 22],
+            ['id' => 4, 'name' => 'Shubham', 'age' => 21],
+            ['id' => 5, 'name' => 'Abhijit', 'age' => 25],
             ['id' => 3, 'name' => 'Alice Johnson', 'age' => 19],
         ];
 
+                // return view('student.list')->with('students', $students);
+                return view('student.list', compact('students'));
 
     }
 

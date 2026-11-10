@@ -9,7 +9,7 @@
 
 <nav>
     <li><a href="/home">Home</a></li>
-    <li><a href="/student">Student</a></li>
+    <li><a href="{{ route('students.index') }}">Student</a></li>
     <li><a href="/parent">Parent</a></li>
 </nav>
 <div style="min-height: 50vh;">

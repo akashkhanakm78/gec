@@ -11,6 +11,23 @@ Route::get('/', function () {
 
     return view('welcome');
 });
+Route::post('/post', function () {
+
+
+    return "post successfull.";
+});
+Route::put('/put', function () {
+
+
+    return "PUT successfull.";
+})->name('put');
+
+
+Route::delete('/delete', function () {
+
+
+    return "Delete successfull.";
+});
 
 Route::resource('students', StudentController::class);
 
@@ -23,10 +40,10 @@ Route::resource('students', StudentController::class);
 // Route::get('/blabla', [StudentController::class, "getStudent"])->name("student");
 
 
-// Route::get('/student',function(){
+// // Route::get('/student',function(){
 
-//     return redirect()->route('student');
-// });
+// //     return redirect()->route('student');
+// // });
 
 // Route::get('/parent', function () {
 //     return view('parent.profile');
