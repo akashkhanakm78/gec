@@ -1,6 +1,9 @@
 <div>
     <!-- I begin to speak only when I am certain what I will say is not better left unsaid. - Cato the Younger -->
 
+        @if (session('success'))
+      <h4 style="color: green;">{{session('success')}} </h4>  
+        @endif
 
     <div>
         <h1>Students</h1>

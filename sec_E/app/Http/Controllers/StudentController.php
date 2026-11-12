@@ -49,7 +49,22 @@ class StudentController extends Controller  implements HasMiddleware
     public function store(Request $request)
     {
         //
-        Return "This is the store page of StudentController Input:" . $request->input('username');
+                $validated= $request->validate([
+                    'name'=>'required | min:3',
+                    'email'=>['email', 'required', 'max:50'],
+                    'password'=>'required | min:8'
+                ],
+                [
+                    'name.required'=>" Naam dalna jaruri hain",
+                    'name.min'=>'Naam bada hona chahiye.',
+                    'email.required'=> " email to tum bhul hi geye",
+                    'email.email'=>'sahise email dalo',
+                    'password.required'=>'Password nehi dalna hai kay ?'
+                ]);
+
+                return back()->with('success', "user created successfully!");
+
+                // return redirect()->route('students.index')->with('success', "user created successfully!");
     }
 
     /**

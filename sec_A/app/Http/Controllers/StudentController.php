@@ -8,16 +8,16 @@ use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Override;
 
-class StudentController extends Controller implements HasMiddleware
+class StudentController extends Controller
 {
 
-    #[Override]
-    public static function middleware(): array
-    {
-        return [
-            new Middleware('check'),
-        ];
-    }
+    // #[Override]
+    // public static function middleware(): array
+    // {
+    //     return [
+    //         new Middleware('check'),
+    //     ];
+    // }
     /**
      * Display a listing of the resource.
      */
@@ -52,6 +52,24 @@ class StudentController extends Controller implements HasMiddleware
     public function store(Request $request)
     {
         //
+
+        $validated = $request->validate([
+            "name"=>'required | min:3',
+            "email" =>'required | max:50',
+            "password"=>'required',
+        ],[
+            "name.required"=> 'Naam Jaruri hain!',
+            "name.min"=>" Kuch bada naam dalo yaar!",
+            "email.required"=>" kyu is bar vi email dalna bhul geye",
+            "password.required"=>"pasword vi to chahiye!"
+        ]
+        );
+
+            return redirect()->route('home')->with('success', "Form Submited successfully!");
+
+            // return response()->json([
+            //     "data"=>$validated,
+            // ]);
     }
 
     /**

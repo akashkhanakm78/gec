@@ -12,6 +12,8 @@
     <li><a href="{{ route('students.index') }}">Student</a></li>
     <li><a href="/parent">Parent</a></li>
 </nav>
+@include('global.search')
+
 <div style="min-height: 50vh;">
 
     @yield('content')

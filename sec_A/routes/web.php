@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MyController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use GuzzleHttp\Psr7\Request;
@@ -31,56 +32,56 @@ Route::delete('/delete', function () {
 
 Route::resource('students', StudentController::class);
 
-// Route::get('/home', function () {
-//     return view('home');
-// });
-// Route::get('/home', [MyController::class, "index"]);
+Route::get('/home', function () {
+    return view('home');
+});
+Route::get('/home', [MyController::class, "index"])->name('home');
 
 
-// Route::get('/blabla', [StudentController::class, "getStudent"])->name("student");
+Route::get('/blabla', [StudentController::class, "getStudent"])->name("student");
 
 
-// // Route::get('/student',function(){
+// Route::get('/student',function(){
 
-// //     return redirect()->route('student');
-// // });
-
-// Route::get('/parent', function () {
-//     return view('parent.profile');
+//     return redirect()->route('student');
 // });
 
-// Route::get('/csrf', function () {
-//     return response()->json(['token' => csrf_token()]);
-// });
+Route::get('/parent', function () {
+    return view('parent.profile');
+});
+
+Route::get('/csrf', function () {
+    return response()->json(['token' => csrf_token()]);
+});
 
 
-// Route::get('/parent', function () {
-//     return view('parent.profile');
-// });
+Route::get('/parent', function () {
+    return view('parent.profile');
+});
 
 
-// Route::get('/reels/{id}/{name}', function ($id, $name) {
+Route::get('/reels/{id}/{name}', function ($id, $name) {
 
 
-//     return "This is video id: $id, name: $name";
+    return "This is video id: $id, name: $name";
     
-//    } );
+   } );
 
-// Route::post('/create-student', [UserController::class, "createUser"]);
-
-
+Route::post('/create-student', [UserController::class, "createUser"]);
 
 
-// Route::delete('/user/{id}', function ($id) {
 
-//     return "User deleted, id: $id";
+
+Route::delete('/user/{id}', function ($id) {
+
+    return "User deleted, id: $id";
     
-//    } );
+   } );
 
 
-//    Route::get('/hello/{name?}', function ($name = "Guest") {
-//     return "Hello, $name!";
-//    } );
+   Route::get('/hello/{name?}', function ($name = "Guest") {
+    return "Hello, $name!";
+   } );
 
 
 
@@ -116,3 +117,7 @@ Route::resource('students', StudentController::class);
 //     });
 
 //    });
+
+
+
+Route::get('/search',[SearchController::class, 'search'])->name('search');

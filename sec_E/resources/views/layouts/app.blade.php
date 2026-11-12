@@ -8,7 +8,7 @@
 </head>
 <body>
     @include('partials.nav', ['name' => 'John Doe'])
-    <main>
+    <main style="margin-left: 50px;">
         @yield('content')
 
     </main>
