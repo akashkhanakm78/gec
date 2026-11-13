@@ -3,6 +3,10 @@
 
         <h1>Student List</h1>
 
+        @if (session('success'))
+         <h4 style="color: green;">{{ session('success') }}</h4>
+        @endif
+
         @foreach ($students as $student)
 
         <li> student name:{{ $student['name'] }} - Age: {{ $student['age'] }}</li>

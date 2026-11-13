@@ -57,6 +57,7 @@ class StudentController extends Controller
             "name"=>'required | min:3',
             "email" =>'required | max:50',
             "password"=>'required',
+            'document' => ['required', 'file', 'mimes:png,jpeg,jpg'],
         ],[
             "name.required"=> 'Naam Jaruri hain!',
             "name.min"=>" Kuch bada naam dalo yaar!",
@@ -65,10 +66,15 @@ class StudentController extends Controller
         ]
         );
 
-            return redirect()->route('home')->with('success', "Form Submited successfully!");
+                $path = $request->file('document')->store('images','public' );
+
+                return back()->with('path',$path);
+                
+            // return redirect()->route('home')->with('success', "Form Submited successfully!");
 
             // return response()->json([
             //     "data"=>$validated,
+            //     "path"=> $path
             // ]);
     }
 

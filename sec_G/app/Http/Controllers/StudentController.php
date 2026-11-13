@@ -7,19 +7,19 @@ use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Override;
 
-class StudentController extends Controller implements HasMiddleware
+class StudentController extends Controller 
 {
     /**
      * Display a listing of the resource.
      */
 
-    #[Override]
-    public static function middleware(): array
-    {
-        return [
-         new Middleware("age_check", only: ['destroy'])
-        ];
-    }
+    // #[Override]
+    // public static function middleware(): array
+    // {
+    //     return [
+    //      new Middleware("age_check", only: ['destroy'])
+    //     ];
+    // }
 
     public function index()
     {
@@ -48,9 +48,23 @@ class StudentController extends Controller implements HasMiddleware
      */
     public function store(Request $request)
     {
+        $method = $request->method();
         //
-
-        return 'User created succesfully ! Name:'. $request->input('name');
+        $validated = $request->validate([
+            'name'=>'required | min:4',
+            'email'=>['email', 'max:50'],
+            'password'=>'required| min:8 | confirmed'
+        ],
+        [
+            'name.required'=> 'naam jaruri hai!',
+            'name.min'=> 'naam bada hona chahiye!',
+            'email.email'=> 'sahise email dalna vi nehi ata !',
+            'password.min'=>'Hack ho jayega bhai strong dal!'
+            
+        ]
+        );
+            return back()->with('success', "User Created Successfully!");
+        // return redirect()->route('students.index')->with('success', "User Created Successfully!");
     }
 
     /**

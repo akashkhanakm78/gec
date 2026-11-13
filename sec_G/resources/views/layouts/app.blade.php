@@ -13,6 +13,8 @@
             <li><a href="{{ route('student') }}">Students</a></li>
         </nav>
 
+        @include('global.search')
+
         <main>
             @yield('content')
         </main>

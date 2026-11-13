@@ -52,7 +52,9 @@ class StudentController extends Controller  implements HasMiddleware
                 $validated= $request->validate([
                     'name'=>'required | min:3',
                     'email'=>['email', 'required', 'max:50'],
-                    'password'=>'required | min:8'
+                    'password'=>'required | min:8 | confirmed',
+                    'document' => ['required', 'file', 'mimes:png,jepg,jpg'],
+
                 ],
                 [
                     'name.required'=>" Naam dalna jaruri hain",
@@ -62,9 +64,13 @@ class StudentController extends Controller  implements HasMiddleware
                     'password.required'=>'Password nehi dalna hai kay ?'
                 ]);
 
-                return back()->with('success', "user created successfully!");
+                $path = $request->file('document')->store('images', 'public');
+
+                return back()->with('path', $path);
 
                 // return redirect()->route('students.index')->with('success', "user created successfully!");
+
+                // return response()->json($path);
     }
 
     /**

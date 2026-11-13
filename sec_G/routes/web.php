@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 
@@ -20,51 +21,53 @@ Route::get('/', function () {
     return view('home');
 
     
-})->middleware('age_check');
+});
 
-// Route::get('/parent', function () {
-//     return view('parent.profile');
-// });
+Route::get('/search',[SearchController::class,'search'])->name('search');
 
-// Route::get('/student', function () {
-//     return redirect()->route('student');
-// });
+Route::get('/parent', function () {
+    return view('parent.profile');
+});
 
-// Route::get('/home', [HomeController::class, 'index']);
-// Route::get('/about', [HomeController::class, 'about']);
+Route::get('/student', function () {
+    return redirect()->route('student');
+});
 
-
-// Route::get('/contact', function () {
-//     return view('contact');
-// });
-
-// Route::get('/text', function () {
-//     return "This is text ";
-// });
-
-// Route::get('/json', function () {
-//     return response()->json([
-//         'name' => 'Mehebub Alam',
-//         'age' => 25,
-//         'address' => 'Kolkata  , India'
-//     ]);
-// });
-
-// Route::post('/create-user',[UserController::class,'createUser']);
+Route::get('/home', [HomeController::class, 'index']);
+Route::get('/about', [HomeController::class, 'about']);
 
 
-// Route::get('/csrf', function () {
-//     return csrf_token();
-// });
+Route::get('/contact', function () {
+    return view('contact');
+});
 
-// Route::get('/reels/{name}/{id}', function ($name, $id) {
+Route::get('/text', function () {
+    return "This is text ";
+});
 
-//     return "User Name: " . $name . ", Video ID: " . $id;
-// });
+Route::get('/json', function () {
+    return response()->json([
+        'name' => 'Mehebub Alam',
+        'age' => 25,
+        'address' => 'Kolkata  , India'
+    ]);
+});
 
-// Route::get('/hello/{name?}', function ($name = 'Guest') {
-//     return "Hello, " . $name . "!";
-// });
+Route::post('/create-user',[UserController::class,'createUser']);
+
+
+Route::get('/csrf', function () {
+    return csrf_token();
+});
+
+Route::get('/reels/{name}/{id}', function ($name, $id) {
+
+    return "User Name: " . $name . ", Video ID: " . $id;
+});
+
+Route::get('/hello/{name?}', function ($name = 'Guest') {
+    return "Hello, " . $name . "!";
+});
 
 
 // // Route::get('/admin', function () {
